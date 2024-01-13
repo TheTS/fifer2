@@ -9,11 +9,12 @@ Description: Functions and datasets that can be used for data cleanup (e.g.,
     to biostatistics (e.g., random forest, multiple comparisons with chi square
     tests). See the package vignette for a brief introduction to many of the main
     functions.
-Version: 1.1
+Version: 1.2
+Depends: lsr
 Author: Dustin Fife <fife.dustin@gmail.com>
 Maintainer: Dustin Fife <fife.dustin@gmail.com>
 License: GPL-2
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.0
+RoxygenNote: 7.2.3

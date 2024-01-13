@@ -39,6 +39,7 @@
 #'
 #'@importFrom stats p.adjust
 #'@importFrom utils combn
+#'@importFrom lsr cramersV
 #'
 chisq.post.hoc <- function(tbl,
                            test=c("chisq.test"),
@@ -63,11 +64,17 @@ chisq.post.hoc <- function(tbl,
   tests <- ncol(prs)
   pvals <- numeric(tests)
   lbls <- character(tests)
+  cramers <- numeric(tests)
+
+
   for (i in 1:tests) {
     pvals[i] <- test(tbl[prs[,i],], ...)$p.value
     lbls[i] <- paste(popsNames[prs[,i]],collapse=" vs. ")
+    cramers[i] <- cramersV(tbl[prs[,i],])
   }
+
   adj.pvals <- p.adjust(pvals,method=control)
   cat("Adjusted p-values used the",control,"method.\n\n")
-  data.frame(comparison=lbls,raw.p=round(pvals,digits),adj.p=round(adj.pvals,digits))
+  data.frame(comparison=lbls,raw.p=round(pvals,digits),adj.p=round(adj.pvals,digits),cramers_v=round(cramers, digits))
+
 }
